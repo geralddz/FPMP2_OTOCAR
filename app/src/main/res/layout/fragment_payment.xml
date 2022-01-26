@@ -1,249 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFEB30"
+    android:background="#FFEB30">
     android:orientation="vertical"
-    tools:context=".Fragment.HomeFragment">
+    tools:context=".Fragment.PaymentFragment">
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="20dp"
-        android:text="MENU PEMBAYARAN"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.562"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.038" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#FFEB30">
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="Nama"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.094"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.012" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Bayar Dengan QR Code"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
-    <EditText
-        android:id="@+id/etnama"
-        android:layout_width="350dp"
-        android:layout_height="30dp"
-        android:background="@drawable/bgedittext"
-        android:hint="Nama"
-        android:paddingStart="20dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.573"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
-        app:layout_constraintVertical_bias="0.012" />
+            <TextView
+                android:id="@+id/tvmbl1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Mobil"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="104dp"
-        android:gravity="center_horizontal"
-        android:text="Alamat"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.101"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etnama"
-        app:layout_constraintVertical_bias="0.021" />
+            <TextView
+                android:id="@+id/tvhrg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Harga"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
-    <EditText
-        android:id="@+id/etalamat"
-        android:layout_width="350dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="320dp"
-        android:background="@drawable/bgedittext"
-        android:hint="Alamat"
-        android:paddingStart="20dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.573"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
-        app:layout_constraintVertical_bias="0.062" />
+            <com.budiyev.android.codescanner.CodeScannerView
+                android:id="@+id/scanner_view"
+                android:layout_width="350dp"
+                android:layout_height="350dp"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center_horizontal"
+                app:autoFocusButtonVisible="true"
+                app:flashButtonVisible="true"
+                app:flashButtonColor="@color/white"
+                />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:gravity="center_horizontal"
-        android:text="No. HP"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.106"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etalamat"
-        app:layout_constraintVertical_bias="0.022" />
-
-    <EditText
-        android:id="@+id/etnohp"
-        android:layout_width="350dp"
-        android:layout_height="30dp"
-        android:background="@drawable/bgedittext"
-        android:hint="No. HP"
-        android:paddingStart="20dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.573"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:layout_constraintVertical_bias="0.017" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Pembayaran lewat Bank"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
 
-    <TextView
-        android:id="@+id/mobil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:gravity="center_horizontal"
-        android:text="Nama Mobil"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etnohp"
-        app:layout_constraintVertical_bias="0.014" />
+            <TextView
+                android:id="@+id/tvcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:text="DISINI"
+                android:textColor="	#FF0000"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
-    <EditText
-        android:id="@+id/etmobil"
-        android:layout_width="350dp"
-        android:layout_height="30dp"
-        android:background="@drawable/bgedittext"
-        android:hint="Nama Mobil"
-        android:paddingStart="20dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.573"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mobil"
-        app:layout_constraintVertical_bias="0.017" />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:gravity="center_horizontal"
-        android:text="Harga"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etmobil"
-        app:layout_constraintVertical_bias="0.025" />
-
-    <EditText
-        android:id="@+id/etharga"
-        android:layout_width="350dp"
-        android:layout_height="30dp"
-        android:background="@drawable/bgedittext"
-        android:hint="Harga Mobil"
-        android:paddingStart="20dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.573"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/price"
-        app:layout_constraintVertical_bias="0.03" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:gravity="center_horizontal"
-        android:text="Pembayaran"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.117"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etharga"
-        app:layout_constraintVertical_bias="0.052" />
-
-    <EditText
-        android:id="@+id/etbayar"
-        android:layout_width="350dp"
-        android:layout_height="30dp"
-        android:background="@drawable/bgedittext"
-        android:hint="Pembayaran"
-        android:paddingStart="20dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.573"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.03" />
-
-    <Button
-        android:id="@+id/btcekout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:backgroundTint="@color/black"
-        android:text="CHECKOUT"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etbayar"
-        app:layout_constraintVertical_bias="0.297" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

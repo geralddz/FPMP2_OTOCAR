@@ -1,5 +1,6 @@
 package com.example.otocar.RecyclerView;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.otocar.Data.Model.DataMobil;
@@ -52,8 +54,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewholder> implements
 
 
     @Override
-    public void onClick(View v) {
-    }
+    public void onClick(View v) {}
 
     class viewholder extends RecyclerView.ViewHolder {
 
@@ -69,6 +70,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewholder> implements
         }
     }
     public interface ItemClicklistener{
-        public void onItemClick(DataMobil dataMobil);
+       void onItemClick(DataMobil dataMobil);
     }
 }

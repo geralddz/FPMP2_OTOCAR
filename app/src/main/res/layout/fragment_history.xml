@@ -10,11 +10,20 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
         android:text="HISTORY TRANSAKSI"
         android:textColor="@color/black"
         android:layout_gravity="center_horizontal"
         android:textSize="20sp"
+        android:textStyle="bold"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tap Transaksi Anda untuk lanjut ke Pembayaran"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/black"
+        android:layout_gravity="center_horizontal"
+        android:textSize="15sp"
         android:textStyle="bold"/>
 
     <androidx.recyclerview.widget.RecyclerView

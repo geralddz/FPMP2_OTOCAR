@@ -1,5 +1,7 @@
 package com.example.otocar.Fragment;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,7 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.otocar.Activity.Profile;
 import com.example.otocar.RecyclerView.Adapter;
 import com.example.otocar.Data.Model.DataMobil;
 import com.example.otocar.R;
@@ -24,6 +30,10 @@ import java.util.ArrayList;
  */
 public class HomeFragment extends Fragment implements Adapter.ItemClicklistener {
 
+    RecyclerView recyclerView;
+    ArrayList<DataMobil> dataholder;
+    SharedPreferences preferences;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -33,8 +43,7 @@ public class HomeFragment extends Fragment implements Adapter.ItemClicklistener 
     private String mParam1;
     private String mParam2;
 
-    RecyclerView recyclerView;
-    ArrayList<DataMobil> dataholder;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -103,10 +112,14 @@ public class HomeFragment extends Fragment implements Adapter.ItemClicklistener 
 
     @Override
     public void onItemClick(DataMobil dataMobil) {
-
-        Fragment fragment = PaymentFragment.newInstance(dataMobil.getJudul(), dataMobil.getHarga());
+        preferences = this.getActivity().getSharedPreferences("User", 0);
+        Fragment fragment = CheckoutFragment.newInstance(dataMobil.getJudul(), dataMobil.getHarga());
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("judul", dataMobil.getJudul());
+        editor.putString("harga", dataMobil.getHarga());
+        editor.apply();
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, fragment, "payment_fragment");
+        transaction.replace(R.id.fragment_container, fragment, "checkout_fragment");
         transaction.addToBackStack(null);
         transaction.commit();
 

@@ -1,4 +1,4 @@
-package com.example.otocar;
+package com.example.otocar.Activity;
 
 import android.content.Context;
 import android.content.SharedPreferences;

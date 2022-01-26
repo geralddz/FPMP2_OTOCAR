@@ -2,8 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.otocar">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <application
-        android:name=".Data.Database.AppUser"
+        android:name=".Data.Database.MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,16 +18,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OTOCAR">
         <activity
-            android:name=".Registrasi"
-            android:exported="false" />
+            android:name=".Activity.Fingerprint"
+            android:exported="true" />
         <activity
-            android:name=".Home"
-            android:exported="false" />
+            android:name=".Activity.EditProfile"
+            android:exported="true" />
         <activity
-            android:name=".SignIn"
-            android:exported="false" />
+            android:name=".Activity.Profile"
+            android:exported="true" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".Activity.Registrasi"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.Home"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.SignIn"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

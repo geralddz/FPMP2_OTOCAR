@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFEB30"
+    tools:context=".Activity.Profile">
+
+ <include
+     layout="@layout/toolbar"/>
+
+   <ImageView
+       android:layout_width="150dp"
+       android:layout_height="150dp"
+       android:layout_marginTop="20dp"
+       android:layout_gravity="center_horizontal"
+       android:src="@drawable/ic_baseline_account_circle_black"/>
+
+    <TextView
+        android:id="@+id/tvUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Username"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:drawableLeft="@drawable/ic_baseline_email_24"
+        android:text="  Email "
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvemail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
+        android:textSize="20sp"
+        android:text=""
+        android:textColor="@color/black" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:drawableLeft="@drawable/ic_baseline_account_circle_black"
+        android:text="  Nama Lengkap"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvnamalkp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
+        android:text=""
+        android:textSize="20sp"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:drawableLeft="@drawable/ic_baseline_phone_24"
+        android:text="  No. HP"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvHP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
+        android:text=""
+        android:textSize="20sp"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:drawableLeft="@drawable/ic_baseline_account_balance_24"
+        android:text="  Alamat"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvalmt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
+        android:textSize="20sp"
+        android:text=""
+        android:textColor="@color/black" />
+
+ <Button
+     android:id="@+id/bteditprofile"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="40dp"
+     android:layout_gravity="center_horizontal"
+     android:backgroundTint="@color/black"
+     android:text="Edit Profile"
+     android:textColor="@color/white"
+     android:textSize="20sp" />
+
+
+</LinearLayout>

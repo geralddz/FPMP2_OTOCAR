@@ -1,10 +1,13 @@
-package com.example.otocar;
+package com.example.otocar.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.example.otocar.Activity.SignIn;
+import com.example.otocar.R;
 
 public class SplashScreen extends AppCompatActivity {
 

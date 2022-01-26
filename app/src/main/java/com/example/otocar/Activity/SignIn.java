@@ -1,6 +1,7 @@
-package com.example.otocar;
+package com.example.otocar.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,8 +10,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.otocar.Data.DAO.UserDAO;
-import com.example.otocar.Data.Database.AppUser;
+import com.example.otocar.Data.Database.MyApp;
 import com.example.otocar.Data.Model.UserEntity;
+import com.example.otocar.R;
 
 public class SignIn extends AppCompatActivity {
 
@@ -18,6 +20,7 @@ public class SignIn extends AppCompatActivity {
     Button masuk, klik;
     UserDAO userDAO;
     private Session session;
+    SharedPreferences preferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,24 +32,26 @@ public class SignIn extends AppCompatActivity {
         klik = findViewById(R.id.klik);
         session = new Session(this);
 
+        preferences = getSharedPreferences("User", 0);
+
         if(session.loggedin()){
             startActivity(new Intent(this,Home.class));
             finish();
         }
 
-        userDAO = AppUser.db.userDAO();
+        userDAO = MyApp.db.userDAO();
         masuk.setOnClickListener(v -> {
 
             String username = user.getText().toString().trim();
             String password = pass.getText().toString().trim();
-
             UserEntity userEntity = userDAO.login(username, password);
             if (userEntity != null) {
                 session.setLoggedin(true);
                 Toast.makeText(this, "Login Berhasil", Toast.LENGTH_SHORT).show();
-                String name = userEntity.getUsername();
-                Intent i = new Intent(this, Home.class)
-                        .putExtra("name", name);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("user", username);
+                editor.apply();
+                Intent i = new Intent(this, Home.class);
                 startActivity(i);
                 finish();
             }else{

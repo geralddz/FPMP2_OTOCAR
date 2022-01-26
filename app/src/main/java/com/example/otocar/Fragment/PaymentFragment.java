@@ -1,20 +1,40 @@
 package com.example.otocar.Fragment;
 
+import static android.content.ContentValues.TAG;
+
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.hardware.biometrics.BiometricManager;
+import android.hardware.biometrics.BiometricPrompt;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.budiyev.android.codescanner.CodeScanner;
+import com.budiyev.android.codescanner.CodeScannerView;
+import com.budiyev.android.codescanner.DecodeCallback;
+import com.example.otocar.Activity.Fingerprint;
 import com.example.otocar.Data.Model.Payment;
-import com.example.otocar.Home;
 import com.example.otocar.R;
+import com.google.zxing.Result;
+
+import java.util.Objects;
+import java.util.concurrent.Executor;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,8 +43,11 @@ import com.example.otocar.R;
  */
 public class PaymentFragment extends Fragment {
 
-    private EditText inid, innama, inalamat, innope, inmobil, inharga, inbayar;
-    private Button cekout;
+    private CodeScanner mCodeScanner;
+    TextView code, bank;
+    private Executor executor;
+    private BiometricPrompt biometricPrompt;
+    private androidx.biometric.BiometricPrompt.PromptInfo promptInfo;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -67,58 +90,89 @@ public class PaymentFragment extends Fragment {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        final Activity activity = getActivity();
         View view = inflater.inflate(R.layout.fragment_payment, container, false);
+        TextView mobil = view.findViewById(R.id.tvmbl1);
+        mobil.setText(mParam1);
+        TextView price = view.findViewById(R.id.tvhrg);
+        price.setText(mParam2);
 
-        TextView mobil1 = view.findViewById(R.id.mobil);
-        mobil1.setText(mParam1);
-
-        TextView price1 = view.findViewById(R.id.price);
-        price1.setText(mParam2);
-
-        innama = view.findViewById(R.id.etnama);
-        inalamat = view.findViewById(R.id.etalamat);
-        innope = view.findViewById(R.id.etnohp);
-        inmobil = view.findViewById(R.id.etmobil);
-        inharga = view.findViewById(R.id.etharga);
-        inbayar = view.findViewById(R.id.etbayar);
-        cekout = view.findViewById(R.id.btcekout);
-
-        cekout.setOnClickListener(v -> {
-            String nama = innama.getText().toString();
-            String alamat = inalamat.getText().toString();
-            String nope = innope.getText().toString();
-            String mobil = inmobil.getText().toString();
-            String harga = inharga.getText().toString();
-            String bayar = inbayar.getText().toString();
-
-            Payment payment = new Payment(nama, alamat,nope, mobil, harga, bayar);
-            payment.setNama(nama);
-            payment.setAlamat(alamat);
-            payment.setNope(nope);
-            payment.setMobil(mobil);
-            payment.setPrice(harga);
-            payment.setBayar(bayar);
-
-            Home.payDAO.tambah(payment);
-            Toast.makeText(getActivity(), "Checkout Berhasil", Toast.LENGTH_SHORT).show();
-            innama.setText("");
-            inalamat.setText("");
-            innope.setText("");
-            inmobil.setText("");
-            inharga.setText("");
-            inbayar.setText("");
-
-            HistoryFragment fragment = new HistoryFragment();
-            getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+//        promptInfo = new androidx.biometric.BiometricPrompt.PromptInfo.Builder()
+//                .setTitle("Title text goes here")
+//                .setSubtitle("Subtitle goes here")
+//                .setDescription("This is the description")
+//                .setNegativeButtonText("Cancel")
+//                .build();
+//
+//        executor = ContextCompat.getMainExecutor(this);
+//        final BiometricPrompt myBiometricPrompt = new BiometricPrompt(getActivity(), executor,
+//                new BiometricPrompt.AuthenticationCallback() {
+//            @Override
+//            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+//                super.onAuthenticationSucceeded(result);
+//                Log.d(TAG, "Fingerprint recognised successfully");
+//            }
+//            @Override
+//            public void onAuthenticationFailed() {
+//                super.onAuthenticationFailed();
+//                Log.d(TAG, "Fingerprint not recognised");
+//            }
+//            @Override
+//            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+//                super.onAuthenticationError(errorCode, errString);
+//                if (errorCode == BiometricPrompt.BIOMETRIC_ERROR_CANCELED) {
+//                } else {
+//                    Log.d(TAG, "An unrecoverable error occurred");
+//                }
+//            }
+//        });
 
 
+        code = view.findViewById(R.id.tvcode);
+        code.setOnClickListener(v -> {
+//            myBiometricPrompt.authenticate(promptInfo);
+            startActivity(new Intent(getActivity(), Fingerprint.class));
+        });
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA}, 100);
+        }
+        CodeScannerView scannerView = view.findViewById(R.id.scanner_view);
+        mCodeScanner = new CodeScanner(activity, scannerView);
+        mCodeScanner.setDecodeCallback(new DecodeCallback() {
+            @Override
+            public void onDecoded(@NonNull final Result result) {
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(activity, result.getText(), Toast.LENGTH_SHORT).show();
+//                        hasil.setText(result.getText());
+                    }
+                });
+            }
         });
 
-        return view;
+        scannerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCodeScanner.startPreview();
+            }
+        });
+        return view ;
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mCodeScanner.startPreview();
+    }
 
+    @Override
+    public void onPause() {
+        mCodeScanner.releaseResources();
+        super.onPause();
     }
 }
