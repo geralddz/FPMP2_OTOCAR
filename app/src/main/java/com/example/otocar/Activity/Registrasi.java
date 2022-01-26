@@ -37,6 +37,7 @@ public class Registrasi extends AppCompatActivity {
         back = findViewById(R.id.back_icon);
         titel = findViewById(R.id.title);
 
+        preferences = getSharedPreferences("User", 0);
         if(session.loggedin()){
             startActivity(new Intent(this,Home.class));
             finish();
